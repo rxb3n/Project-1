@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Parcel Sandbox</title>
+    <title>dttr</title>
     <meta charset="UTF-8" />
     <style>
       #theGame {
         border: 1px solid black;
         display: flex;
-        justify-content: center;
-        align-items: center;
         background-color: black;
       }
       #navbar {
+        font-family: 'Audiowide';font-size: 4em;
         padding-left: 225px;
-        font-size: 2em;
+        color: white;
       }
+
+      #app {
+        color:white;
+        padding-left: 100px;
+        font-size: 22px;;
+      }
+      
+      .theBody {
+        background-image: url('src/images/source.gif');
+
+        background-position: 25% 25%;
+        padding-left: 500px;
+        padding-top: 75px;
+      }
+      
     </style>
   </head>
 
-  <body>
+  <body class = "theBody">
+    <div id="app">
+      <h3>Use the arrow keys to move<br> Survive as long as possible</h3>
+    </div>
     <nav id="navbar">0</nav>
     <canvas id="theGame" width="500" height="325"> </canvas>
-    <div id="app"></div>
-
+  
     <script src="src/index.js"  type="module"></script>
   </body>
 </html>

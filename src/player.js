@@ -44,7 +44,7 @@ export default class Player {
     if (this.position.x < 5) this.position.x = 5;
     if (this.position.x > 470) this.position.x = 470;
 
-    if (this.position.y < 0) this.position.y = 50 - 12.5;
-    if (this.position.y > 300) this.position.y = 275 - 12.5;
+    if (this.position.y < 0) this.position.y = 275 - 12.5 ;
+    if (this.position.y > 300) this.position.y = 50 - 12.5;
   }
 }

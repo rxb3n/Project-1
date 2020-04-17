@@ -12,7 +12,10 @@ export default class RightObstacle {
       y: randomY - 7.5
     };
   }
-
+  increaseSpeed() {
+    this.maxSpeed += 0.25;
+  }
+  
   update(dTime) {
     if (!dTime) return;
     this.position.x += this.maxSpeed;
@@ -33,4 +36,6 @@ export default class RightObstacle {
       return true;
     }
   }
+  
+  
 }
