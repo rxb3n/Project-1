@@ -15,7 +15,7 @@ export default class Obstacle {
     };
   }
   increaseSpeed() {
-    this.maxSpeed += 4;
+    this.maxSpeed += 0.35;
   }
   update(dTime) {
     if (!dTime) return;

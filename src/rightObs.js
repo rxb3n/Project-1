@@ -13,7 +13,7 @@ export default class RightObstacle {
     };
   }
   increaseSpeed() {
-    this.maxSpeed += 0.25;
+    this.maxSpeed += 0.20;
   }
 
   update(dTime) {

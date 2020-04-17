@@ -13,12 +13,11 @@ const game_width = 500;
 const game_height = 325;
 
 //----------------------------AUDIO-------------------------------------//
-var crashing = new Audio('src/sounds/crash sound.mp3');
-var musicLoop = new Audio('src/sounds/loop.mp3');
-
+var crashing = new Audio("src/sounds/crash sound.mp3");
+var musicLoop = new Audio("src/sounds/loop.mp3");
 
 //---------------------------OBSTACLES----------------------------//
-let gameLoopId; 
+let gameLoopId;
 var ypositions = [50, 162.5, 275];
 var randomPosy = Math.floor(Math.random() * ypositions.length);
 let randomY = ypositions[randomPosy];
@@ -39,7 +38,7 @@ function increment() {
   scoreCounter.innerText = seconds;
   return seconds;
 }
-let timer; 
+let timer;
 let rightObstacle;
 let leftObstacle;
 let obsTimer;
@@ -48,23 +47,22 @@ let obsTimer;
 let theScore;
 
 //--------------------------------------------START GAME----------------------------------//
-function startGame(){  
-  
-  alert('Your score was: ' + theScore + "! Click OK or press Enter to start");
+function startGame() {
+  alert("Your score was: " + theScore + "! Click OK or press Enter to start");
   musicLoop.currentTime = 0;
   musicLoop.play();
   musicLoop.volume = 0.15;
-  obsTimer = setInterval(increaseObsSpeed, 2000);
+  obsTimer = setInterval(increaseObsSpeed, 10000);
   timer = setInterval(increment, 890);
   rightObstacle = setInterval(addRightObs, 800);
   leftObstacle = setInterval(addObstacle, 725);
-  gameLoop()
+  gameLoop();
 }
 
 //----------------------------------------MODIFIERS----------------------------------//
 function increaseObsSpeed() {
-obstacles.increaseSpeed();
-rightObstacles.increaseSpeed();
+  obstacles.forEach(obs => obs.increaseSpeed());
+  rightObstacles.forEach(obs => obs.increaseSpeed());
 }
 //---------------------- ----------------------SPAWN OBSTACLES------------------------//
 let obstacles = [];
@@ -102,7 +100,7 @@ function gameLoop(timestamp) {
   linethree.draw(ctx);
   // obstacle.draw(ctx);
 
-  obstacles.forEach(obs => {
+  obstacles.forEach((obs) => {
     obs.update(dTime);
     obs.draw(ctx);
     let collision = obs.detectCollision(player);
@@ -110,11 +108,13 @@ function gameLoop(timestamp) {
       crashing.play();
       crashing.volume = 0.05;
       gameOver();
-      
     }
+    // if(score > 15) {
+    //   obs.increaseSpeed()
+    // }
   });
 
-  rightObstacles.forEach(robs => {
+  rightObstacles.forEach((robs) => {
     robs.update(dTime);
     robs.draw(ctx);
     robs.detectCollision(player);
@@ -124,9 +124,10 @@ function gameLoop(timestamp) {
       crashing.volume = 0.05;
       gameOver();
     }
+    // if (score > 15) {
+    //   robs.increaseSpeed();
+    // }
   });
-  
-
 }
 //--------------------------------GAME OVER------------------------------//
 function gameOver() {
@@ -139,13 +140,10 @@ function gameOver() {
   rightObstacles = [];
   seconds = 0;
   cancelAnimationFrame(gameLoopId);
-  
-theScore = document.querySelector("#navbar").innerHTML;
 
-
+  theScore = document.querySelector("#navbar").innerHTML;
 
   setTimeout(startGame, 500);
-  
 }
 
 // ---------- --------------------------START GAME -----------------------------//
