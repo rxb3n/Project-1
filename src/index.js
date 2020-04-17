@@ -37,19 +37,25 @@ let scoreCounter = document.querySelector("#navbar");
 function increment() {
   seconds += 1;
   scoreCounter.innerText = seconds;
+  return seconds;
 }
 let timer; 
 let rightObstacle;
 let leftObstacle;
 let obsTimer;
 
+//------------------------------------------SCORING----------------------------------//
+let theScore;
 
-function startGame(){
+//--------------------------------------------START GAME----------------------------------//
+function startGame(){  
   
+  alert('Your score was: ' + theScore + "! Click OK to start");
+  musicLoop.currentTime = 0;
   musicLoop.play();
   musicLoop.volume = 0.15;
   obsTimer = setInterval(increaseObsSpeed, 2000);
-  timer = setInterval(increment, 1000);
+  timer = setInterval(increment, 890);
   rightObstacle = setInterval(addRightObs, 800);
   leftObstacle = setInterval(addObstacle, 725);
   gameLoop()
@@ -58,18 +64,8 @@ function startGame(){
 //----------------------------------------MODIFIERS----------------------------------//
 function increaseObsSpeed() {
 obstacles.increaseObsSpeed();
-RightObstacles.increaseObsSpeed();
+rightObstacles.increaseObsSpeed();
 }
-
-//------------------------------------------SCORING----------------------------------//
-let highestScore = 0;
-let highscore = 0;
-for (f=0; f<highscore; f++) {
-  highscore = seconds;
-}
-
-
-
 //---------------------- ----------------------SPAWN OBSTACLES------------------------//
 let obstacles = [];
 function addObstacle() {
@@ -94,9 +90,6 @@ let lastTime = 0;
 // ---------- --------------------------------------GAME LOOP-----------------------------//
 function gameLoop(timestamp) {
   gameLoopId = requestAnimationFrame(gameLoop);
-
-
-  
   let dTime = timestamp - lastTime;
   lastTime = timestamp;
 
@@ -108,6 +101,7 @@ function gameLoop(timestamp) {
   linetwo.draw(ctx);
   linethree.draw(ctx);
   // obstacle.draw(ctx);
+
   obstacles.forEach(obs => {
     obs.update(dTime);
     obs.draw(ctx);
@@ -145,9 +139,13 @@ function gameOver() {
   rightObstacles = [];
   seconds = 0;
   cancelAnimationFrame(gameLoopId);
-  alert("Game over, Your Highest Score is :" + highScore);
-  setTimeout(startGame, 2000)
+  
+theScore = document.querySelector("#navbar").innerHTML;
 
+
+
+  setTimeout(startGame, 500);
+  
 }
 
 // ---------- --------------------------START GAME -----------------------------//

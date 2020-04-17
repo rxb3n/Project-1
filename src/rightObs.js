@@ -15,7 +15,7 @@ export default class RightObstacle {
   increaseSpeed() {
     this.maxSpeed += 0.25;
   }
-  
+
   update(dTime) {
     if (!dTime) return;
     this.position.x += this.maxSpeed;
