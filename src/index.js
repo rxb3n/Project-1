@@ -50,7 +50,7 @@ let theScore;
 //--------------------------------------------START GAME----------------------------------//
 function startGame(){  
   
-  alert('Your score was: ' + theScore + "! Click OK to start");
+  alert('Your score was: ' + theScore + "! Click OK or press Enter to start");
   musicLoop.currentTime = 0;
   musicLoop.play();
   musicLoop.volume = 0.15;
@@ -63,8 +63,8 @@ function startGame(){
 
 //----------------------------------------MODIFIERS----------------------------------//
 function increaseObsSpeed() {
-obstacles.increaseObsSpeed();
-rightObstacles.increaseObsSpeed();
+obstacles.increaseSpeed();
+rightObstacles.increaseSpeed();
 }
 //---------------------- ----------------------SPAWN OBSTACLES------------------------//
 let obstacles = [];
